@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: payment-service
+  
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/airline_aggregator}
+    username: ${SPRING_DATASOURCE_USERNAME:airline_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:airline_pass}
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+# Payment configuration
+payment:
+  mock-mode: true
+  always-success: true
+  processing-delay-ms: 2000
+
+logging:
+  level:
+    com.airlineaggregator: DEBUG
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n" 
